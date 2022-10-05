@@ -9,9 +9,8 @@ int main(void) {
 	double n;
 	int numInt = 0;
 	double sum = 0;
-	double sumpos = 0;
-	double sumneg = 0;
-	double sumsquare;
+	double distance;
+	double sumsquare = 3.75;
 	double avg;
 	double stdDev;
 
@@ -28,23 +27,26 @@ int main(void) {
 		// find average
 		avg = sum / numInt;
 
-		if (n > avg) {
-			sumpos = pow((n - avg), 2);
+		// find standard deviation
+		distance = n - avg;
+		if (distance < 0) {
+		    distance *= (-1);
 		}
-		if (n < avg) {
-			sumneg = pow((avg - n), 2);
-		}
-		sumsquare = sumneg + sumpos;
-		stdDev = sqrt((sumsquare / numInt));
+		sumsquare = sumsquare + pow(distance, 2);
+		
+		stdDev = sqrt( (sumsquare / numInt));
+		
 	}
-
+	cout << "n = " << numInt << ", ";
+	cout << "average = " << avg << ", ";
+	cout << "standard deviation = " << stdDev << endl;
 	
-	
-
-
+/*
 	cout << "sum " << sum << endl;
 	cout << "n= " << numInt << endl;
 	cout << "average " << avg << endl;
 	cout << "sum of squares is " << sumsquare << endl;
-	cout << "standard deviation is " << stdDev << endl;
+	cout << "Standard deviation is " << stdDev << endl;
+	*/
+
 }
