@@ -1,6 +1,6 @@
 //Lab6-3
 #include <iostream>
-#include <iomanip>
+#include <string>
 #include <cmath>
 
 using namespace std;
@@ -9,44 +9,35 @@ int main(void) {
 	double n;
 	int numInt = 0;
 	double sum = 0;
-	double distance;
-	double sumsquare = 3.75;
-	double avg;
-	double stdDev;
+	double sumsquare = 0;
+	double squaresum = 0;
+	double avg = 0;
+	double stdDev = 0;
+	string str;
+	int i;
+	double numerator = 0;
 
 	//Enter input values
 	cout << "Enter numbers - Q to quit: ";
 	
-	while (cin >> n) {
-		sum = sum + n;
-		numInt++;
-		if (cin.fail()) {
-			cout << "No data processing - exiting" << endl;
-		}
+	while (true) {
+	    cin >> n;
+	    if (cin.fail()) break;
+	    
+	    numInt++;
 		
 		// find average
-		avg = sum / numInt;
+		sum += n;
 
 		// find standard deviation
-		distance = n - avg;
-		if (distance < 0) {
-		    distance *= (-1);
-		}
-		sumsquare = sumsquare + pow(distance, 2);
-		
-		stdDev = sqrt( (sumsquare / numInt));
-		
+		sumsquare += pow(n, 2);
 	}
+
+	numerator = sumsquare -((sum * sum) / numInt);
+	stdDev = sqrt(numerator / (numInt - 1));
+	avg = sum / numInt;
 	cout << "n = " << numInt << ", ";
 	cout << "average = " << avg << ", ";
 	cout << "standard deviation = " << stdDev << endl;
-	
-/*
-	cout << "sum " << sum << endl;
-	cout << "n= " << numInt << endl;
-	cout << "average " << avg << endl;
-	cout << "sum of squares is " << sumsquare << endl;
-	cout << "Standard deviation is " << stdDev << endl;
-	*/
 
 }
